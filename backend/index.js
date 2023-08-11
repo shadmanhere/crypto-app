@@ -1,8 +1,10 @@
 import express from 'express';
 import {Server} from 'socket.io';
 import axios from 'axios';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express().listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
@@ -20,13 +22,22 @@ socketHandler.on('connection', socket => {
   socket.emit('crypto', 'Hello Cryptos Client!');
 });
 
-axios
-  .get(
-    'https://data.messari.io/api/v2/assets?fields=id,slug,symbol,metrics/market_data/price_usd',
-  )
-  .then(res => {
-    console.log(res);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+const getPrices = () =>
+  axios
+    .get(process.env.LIST_URL)
+    .then(res => {
+      const priceList = res.data.data.map(item => {
+        return {
+          id: item.id,
+          name: item.symbol,
+          price: item.metrics.market_data.price_usd,
+        };
+      });
+
+      socketHandler.emit('crypto', priceList);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
+setInterval(() => getPrices(), 5000);

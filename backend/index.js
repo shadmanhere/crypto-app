@@ -1,5 +1,6 @@
 import express from 'express';
 import {Server} from 'socket.io';
+import axios from 'axios';
 
 const PORT = 3000;
 const app = express().listen(PORT, () => {
@@ -18,3 +19,14 @@ socketHandler.on('connection', socket => {
   console.log('client connected');
   socket.emit('crypto', 'Hello Cryptos Client!');
 });
+
+axios
+  .get(
+    'https://data.messari.io/api/v2/assets?fields=id,slug,symbol,metrics/market_data/price_usd',
+  )
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  });

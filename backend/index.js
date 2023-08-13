@@ -25,7 +25,7 @@ socketHandler.on('connection', socket => {
 const getPrices = () =>
   axios
     .get(process.env.LIST_URL, {
-      headers: {'x-messari-api-key': process.env.MESSARI_API},
+      headers: {'x-messari-api-key': process.env.MESSARI_API_KEY},
     })
     .then(res => {
       const priceList = res.data.data.map(item => {

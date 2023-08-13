@@ -24,7 +24,9 @@ socketHandler.on('connection', socket => {
 
 const getPrices = () =>
   axios
-    .get(process.env.LIST_URL)
+    .get(process.env.LIST_URL, {
+      headers: {'x-messari-api-key': process.env.MESSARI_API},
+    })
     .then(res => {
       const priceList = res.data.data.map(item => {
         return {
@@ -44,4 +46,4 @@ const getPrices = () =>
       });
     });
 
-setInterval(() => getPrices(), 5000);
+setInterval(() => getPrices(), 20000);

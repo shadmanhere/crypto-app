@@ -38,6 +38,10 @@ const getPrices = () =>
     })
     .catch(err => {
       console.log(err);
+      socketHandler.emit('crypto', {
+        error: true,
+        message: 'Error Fetching Prices Data From API',
+      });
     });
 
 setInterval(() => getPrices(), 5000);

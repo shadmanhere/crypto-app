@@ -5,11 +5,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-const app = express().listen(PORT, () => {
+const app = express();
+app.use(express.json());
+
+const server = app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });
 
-const socketHandler = new Server(app);
+const socketHandler = new Server(server);
 
 socketHandler.on('connection', socket => {
   socket.on('connection_error', () => {
@@ -46,4 +49,30 @@ const getPrices = () =>
       });
     });
 
-setInterval(() => getPrices(), 20000);
+setInterval(() => getPrices(), 60000);
+
+app.get('/cryptos/profile/', (req, res) => {
+  res.json({error: true, message: 'Missing Crypto Id in API URL'});
+});
+
+app.get('/cryptos/profile/:id', (req, res) => {
+  const cryptoId = req.params.id;
+  if (!cryptoId) {
+    res.json({error: true, message: 'Missing Crypto Id in API URL'});
+  }
+
+  axios
+    .get(`${process.env.BASE_URL}/${cryptoId}/profile`, {
+      headers: {'x-messari-api-key': process.env.MESSARI_API_KEY},
+    })
+    .then(resData => {
+      res.json(resData.data.data);
+    })
+    .catch(err => {
+      res.json({
+        error: true,
+        message: 'Error Fetching Prices Data From API',
+        errorDetails: err,
+      });
+    });
+});

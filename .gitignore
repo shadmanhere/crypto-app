@@ -7,35 +7,35 @@ CryptoApp/.DS_Store
 
 # Xcode
 #
-CryptoApp/build/
-CryptoApp/*.pbxuser
-CryptoApp/!default.pbxuser
-CryptoApp/*.mode1v3
-CryptoApp/!default.mode1v3
-CryptoApp/*.mode2v3
-CryptoApp/!default.mode2v3
-CryptoApp/*.perspectivev3
-CryptoApp/!default.perspectivev3
-CryptoApp/xcuserdata
-CryptoApp/*.xccheckout
-CryptoApp/*.moved-aside
-CryptoApp/DerivedData
-CryptoApp/*.hmap
-CryptoApp/*.ipa
-CryptoApp/*.xcuserstate
+CryptoApp/ios/build/
+CryptoApp/ios/*.pbxuser
+CryptoApp/ios/!default.pbxuser
+CryptoApp/ios/*.mode1v3
+CryptoApp/ios/!default.mode1v3
+CryptoApp/ios/*.mode2v3
+CryptoApp/ios/!default.mode2v3
+CryptoApp/ios/*.perspectivev3
+CryptoApp/ios/!default.perspectivev3
+CryptoApp/ios/xcuserdata
+CryptoApp/ios/*.xccheckout
+CryptoApp/ios/*.moved-aside
+CryptoApp/ios/DerivedData
+CryptoApp/ios/*.hmap
+CryptoApp/ios/*.ipa
+CryptoApp/ios/*.xcuserstate
 CryptoApp/ios/.xcode.env.local
 
 # Android/IntelliJ
 #
-CryptoApp/build/
+CryptoApp/android/app/build/
 CryptoApp/.idea
-CryptoApp/.gradle
-CryptoApp/local.properties
-CryptoApp/*.iml
-CryptoApp/*.hprof
-CryptoApp/.cxx/
-CryptoApp/*.keystore
-CryptoApp/!debug.keystore
+CryptoApp/android/.gradle
+CryptoApp/android/local.properties
+CryptoApp/android/*.iml
+CryptoApp/android/*.hprof
+CryptoApp/android/.cxx/
+CryptoApp/android/*.keystore
+CryptoApp/android/!debug.keystore
 
 # node.js
 #

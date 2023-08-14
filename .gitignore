@@ -28,6 +28,7 @@ CryptoApp/ios/.xcode.env.local
 # Android/IntelliJ
 #
 CryptoApp/android/app/build/
+CryptoApp/android/build/
 CryptoApp/.idea
 CryptoApp/android/.gradle
 CryptoApp/android/local.properties

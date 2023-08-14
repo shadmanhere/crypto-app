@@ -3,45 +3,45 @@ backend/node_modules
 backend/.env
 # OSX
 #
-.DS_Store
+CryptoApp/.DS_Store
 
 # Xcode
 #
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-ios/.xcode.env.local
+CryptoApp/build/
+CryptoApp/*.pbxuser
+CryptoApp/!default.pbxuser
+CryptoApp/*.mode1v3
+CryptoApp/!default.mode1v3
+CryptoApp/*.mode2v3
+CryptoApp/!default.mode2v3
+CryptoApp/*.perspectivev3
+CryptoApp/!default.perspectivev3
+CryptoApp/xcuserdata
+CryptoApp/*.xccheckout
+CryptoApp/*.moved-aside
+CryptoApp/DerivedData
+CryptoApp/*.hmap
+CryptoApp/*.ipa
+CryptoApp/*.xcuserstate
+CryptoApp/ios/.xcode.env.local
 
 # Android/IntelliJ
 #
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
+CryptoApp/build/
+CryptoApp/.idea
+CryptoApp/.gradle
+CryptoApp/local.properties
+CryptoApp/*.iml
+CryptoApp/*.hprof
+CryptoApp/.cxx/
+CryptoApp/*.keystore
+CryptoApp/!debug.keystore
 
 # node.js
 #
-node_modules/
-npm-debug.log
-yarn-error.log
+CryptoApp/node_modules/
+CryptoApp/npm-debug.log
+CryptoApp/yarn-error.log
 
 # fastlane
 #
@@ -50,20 +50,20 @@ yarn-error.log
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
 
-**/fastlane/report.xml
-**/fastlane/Preview.html
-**/fastlane/screenshots
-**/fastlane/test_output
+CryptoApp/**/fastlane/report.xml
+CryptoApp/**/fastlane/Preview.html
+CryptoApp/**/fastlane/screenshots
+CryptoApp/**/fastlane/test_output
 
 # Bundle artifact
 *.jsbundle
 
 # Ruby / CocoaPods
-/ios/Pods/
-/vendor/bundle/
+CryptoApp/ios/Pods/
+CryptoApp/vendor/bundle/
 
 # Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
+CryptoApp/.metro-health-check*
 
 # testing
-/coverage
+CryptoApp//coverage

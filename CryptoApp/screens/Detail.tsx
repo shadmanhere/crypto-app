@@ -9,12 +9,12 @@ export const DetailScreen = ({route}: {route: any}) => {
   const [cryptoMarketData, setCryptoMarketData] = useState();
 
   useEffect(() => {
-    axios.get(`${API_URL}/cryptos/profile/${id}`).then(response => {
-      setCryptoProfile(response.data);
-    });
-
-    axios.get(`${API_URL}/cryptos/market-data/${id}`).then(response => {
-      setCryptoMarketData(response.data);
+    Promise.all([
+      axios.get(`${API_URL}/cryptos/profile/${id}`),
+      axios.get(`${API_URL}/cryptos/market-data/${id}`),
+    ]).then(([resProfile, reMarketData]) => {
+      setCryptoProfile(resProfile.data);
+      setCryptoMarketData(reMarketData.data);
     });
   }, [id]);
   return (

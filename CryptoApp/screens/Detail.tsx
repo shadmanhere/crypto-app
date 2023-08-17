@@ -22,13 +22,26 @@ export const DetailScreen = ({route}: {route: any}) => {
   return (
     <>
       {cryptoDataLoaded && (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text>{JSON.stringify(cryptoProfile)}</Text>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.headerInfo}>
+              <Text style={styles.name}>{cryptoProfile.name}</Text>
+              <Text style={styles.symbol}>{cryptoProfile.symbol}</Text>
+              <Text style={styles.price}>
+                {`$ ${convert(cryptoMarketData.market_data.price_usd)}`}
+              </Text>
+            </View>
+            <View style={styles.headerTagline}>
+              <Text style={styles.tagline}>
+                {cryptoProfile.profile.general.overview.tagline}
+              </Text>
+            </View>
+          </View>
         </View>
       )}
 
       {!cryptoDataLoaded && (
-        <View style={[styles.container, styles.horizontal]}>
+        <View style={[styles.loadingContainer, styles.horizontal]}>
           <ActivityIndicator size="large" color="#ffab00" />
         </View>
       )}
@@ -38,6 +51,48 @@ export const DetailScreen = ({route}: {route: any}) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#272d42',
+    padding: 10,
+    flex: 1,
+  },
+  header: {
+    backgroundColor: '#000',
+    height: 100,
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  headerInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  headerTagline: {
+    marginTop: 10,
+  },
+  tagline: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  name: {
+    fontSize: 24,
+    color: '#fff',
+  },
+  symbol: {
+    fontSize: 15,
+    padding: 5,
+    backgroundColor: '#272d42',
+    color: '#fff',
+  },
+
+  price: {
+    fontSize: 28,
+    color: '#ffab00',
+    width: 150,
+    textAlign: 'right',
+  },
+
+  loadingContainer: {
     flex: 1,
     justifyContent: 'center',
   },
@@ -47,3 +102,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
+const convert = (price: number) => {
+  return Math.round(price * 100) / 100;
+};

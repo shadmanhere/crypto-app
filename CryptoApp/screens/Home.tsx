@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, Pressable, FlatList} from 'react-native';
 import {Crypto} from '../models/crypto';
 
 const cryptoList: Crypto[] = [
@@ -20,11 +20,20 @@ const cryptoList: Crypto[] = [
   },
 ];
 
-const renderItem = ({item}: {item: Crypto}) => {
-  return <Text>{item.name}</Text>;
-};
+export const HomeScreen = ({navigation}: {navigation: any}) => {
+  const openCryptoDetail = () => {
+    navigation.navigate('Detail');
+  };
 
-export const HomeScreen = ({}: {navigation: any}) => {
+  const renderItem = ({item}: {item: Crypto}) => {
+    return (
+      <Pressable onPress={() => openCryptoDetail()}>
+        <Text>{item.name}</Text>
+        <Text>{item.price}</Text>
+      </Pressable>
+    );
+  };
+
   return (
     // eslint-disable-next-line react-native/no-inline-styles
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

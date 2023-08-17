@@ -1,12 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, ActivityIndicator, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  ScrollView,
+  useWindowDimensions,
+} from 'react-native';
 import axios from 'axios';
+import RenderHtml from 'react-native-render-html';
 import {API_URL} from '@env';
+import {CryptoMarketDataInit, CryptoProfileInit} from '../models/crypto';
 
 export const DetailScreen = ({route}: {route: any}) => {
+  const {width} = useWindowDimensions();
   const id = route.params.id;
-  const [cryptoProfile, setCryptoProfile] = useState();
-  const [cryptoMarketData, setCryptoMarketData] = useState();
+  const [cryptoProfile, setCryptoProfile] = useState(CryptoProfileInit);
+  const [cryptoMarketData, setCryptoMarketData] =
+    useState(CryptoMarketDataInit);
   const [cryptoDataLoaded, setCryptoDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -55,6 +66,27 @@ export const DetailScreen = ({route}: {route: any}) => {
               </Text>
             </View>
           </View>
+          <ScrollView style={styles.cryptoInfo}>
+            <View style={styles.cryptoInfoRow}>
+              <Text style={styles.cryptoInfoTitle}>Overview</Text>
+              <RenderHtml
+                contentWidth={width}
+                source={{
+                  html: `<p style="color: #fff">${cryptoProfile.profile.general.overview.project_details}</p>`,
+                }}
+              />
+            </View>
+            <View style={styles.cryptoInfoRow}>
+              <Text style={styles.cryptoInfoTitle}>Background</Text>
+
+              <RenderHtml
+                contentWidth={width}
+                source={{
+                  html: `<p style="color: #fff">${cryptoProfile.profile.general.background.background_details}</p>`,
+                }}
+              />
+            </View>
+          </ScrollView>
         </View>
       )}
 
@@ -121,6 +153,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+
+  cryptoInfo: {
+    backgroundColor: '#000',
+    padding: 10,
+    flex: 1,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  cryptoInfoTitle: {
+    color: '#ffab00',
+    fontSize: 22,
+    marginBottom: 5,
+  },
+  cryptoInfoRow: {
+    flex: 1,
+    marginBottom: 25,
   },
 
   loadingContainer: {

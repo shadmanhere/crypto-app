@@ -21,13 +21,15 @@ const cryptoList: Crypto[] = [
 ];
 
 export const HomeScreen = ({navigation}: {navigation: any}) => {
-  const openCryptoDetail = () => {
-    navigation.navigate('Detail');
+  const openCryptoDetail = (id: string) => {
+    navigation.navigate('Detail', {id: id});
   };
 
   const renderItem = ({item}: {item: Crypto}) => {
     return (
-      <Pressable style={styles.crypto} onPress={() => openCryptoDetail()}>
+      <Pressable
+        style={styles.crypto}
+        onPress={() => openCryptoDetail(item.id)}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.price}>{item.price}</Text>
       </Pressable>
@@ -56,7 +58,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#000',
     flex: 1,
-    marginBottom: 8,
+    margin: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

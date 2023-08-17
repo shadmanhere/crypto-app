@@ -1,26 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Pressable, FlatList, StyleSheet} from 'react-native';
 import {Crypto} from '../models/crypto';
-
-const cryptoList: Crypto[] = [
-  {
-    id: '1',
-    name: 'BTC',
-    price: 3800.64,
-  },
-  {
-    id: '2',
-    name: 'ETH',
-    price: 4000.0,
-  },
-  {
-    id: '3',
-    name: 'SQL',
-    price: 250.21,
-  },
-];
+import {socket} from '../App';
 
 export const HomeScreen = ({navigation}: {navigation: any}) => {
+  const [cryptoList, setCryptoList] = useState([]);
+
+  useEffect(() => {
+    socket.on('crypto', data => {
+      setCryptoList(data);
+    });
+  }, []);
+
   const openCryptoDetail = (id: string) => {
     navigation.navigate('Detail', {id: id});
   };
@@ -31,7 +22,7 @@ export const HomeScreen = ({navigation}: {navigation: any}) => {
         style={styles.crypto}
         onPress={() => openCryptoDetail(item.id)}>
         <Text style={styles.name}>{item.name}</Text>
-        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.price}>{item.price.toFixed(2)}</Text>
       </Pressable>
     );
   };

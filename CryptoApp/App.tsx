@@ -14,7 +14,7 @@ import {HomeScreen, DetailScreen} from './screens';
 import io from 'socket.io-client';
 
 const Stack = createNativeStackNavigator();
-const socket = io(API_URL);
+export const socket = io(API_URL);
 
 socket.on('connect', () => {
   console.log('socket connected');

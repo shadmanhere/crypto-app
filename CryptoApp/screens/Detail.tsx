@@ -37,6 +37,24 @@ export const DetailScreen = ({route}: {route: any}) => {
               </Text>
             </View>
           </View>
+          <View style={styles.priceChanges}>
+            <View style={styles.priceChangeRow}>
+              <Text style={styles.tagline}>Percent Change 1h</Text>
+              <Text style={styles.tagline}>
+                {` % ${convert(
+                  cryptoMarketData.market_data.percent_change_usd_last_1_hour,
+                )}`}
+              </Text>
+            </View>
+            <View style={styles.priceChangeRow}>
+              <Text style={styles.tagline}>Percent Change 24h</Text>
+              <Text style={styles.tagline}>
+                {` % ${convert(
+                  cryptoMarketData.market_data.percent_change_usd_last_24_hours,
+                )}`}
+              </Text>
+            </View>
+          </View>
         </View>
       )}
 
@@ -90,6 +108,19 @@ const styles = StyleSheet.create({
     color: '#ffab00',
     width: 150,
     textAlign: 'right',
+  },
+
+  priceChanges: {
+    backgroundColor: '#000',
+    height: 70,
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  priceChangeRow: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   loadingContainer: {

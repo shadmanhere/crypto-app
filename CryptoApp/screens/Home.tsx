@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Pressable, FlatList} from 'react-native';
+import {View, Text, Pressable, FlatList, StyleSheet} from 'react-native';
 import {Crypto} from '../models/crypto';
 
 const cryptoList: Crypto[] = [
@@ -27,16 +27,15 @@ export const HomeScreen = ({navigation}: {navigation: any}) => {
 
   const renderItem = ({item}: {item: Crypto}) => {
     return (
-      <Pressable onPress={() => openCryptoDetail()}>
-        <Text>{item.name}</Text>
-        <Text>{item.price}</Text>
+      <Pressable style={styles.crypto} onPress={() => openCryptoDetail()}>
+        <Text style={styles.name}>{item.name}</Text>
+        <Text style={styles.price}>{item.price}</Text>
       </Pressable>
     );
   };
 
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={styles.container}>
       <FlatList
         data={cryptoList}
         renderItem={renderItem}
@@ -45,3 +44,28 @@ export const HomeScreen = ({navigation}: {navigation: any}) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#272d42',
+    flex: 1,
+  },
+  crypto: {
+    borderRadius: 5,
+    borderWidth: 1,
+    padding: 20,
+    backgroundColor: '#000',
+    flex: 1,
+    marginBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  name: {
+    color: '#fff',
+    fontSize: 24,
+  },
+  price: {
+    color: '#ffab00',
+    fontSize: 28,
+  },
+});
